@@ -16,7 +16,7 @@ int main(__attribute__((unused)) int argc, char *argv[])
 
 	while (1)
 	{
-		prompt("blessing&tunde$ ");
+		prompt("titus&tunde$ ");
 		if (_getline(&argline, &arglen, STDIN_FILENO) == -1)
 		{
 			prompt("\n");
