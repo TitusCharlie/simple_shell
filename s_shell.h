@@ -84,6 +84,8 @@ void env_func(char **);
 
 void setenv_func(char **);
 
+void unsetenv_func(char **);
+
 int _atoi(char *);
 
 int evalInt(char *, char *);

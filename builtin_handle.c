@@ -35,6 +35,7 @@ void handle_builtin(char **argvec, size_t index)
 {
 	builtin_f com_struct[] = {{"exit", NULL}, {"env", env_func},
 				  {"cd", cd_func}, {"setenv", setenv_func}
+				  {"unsetenv", unsetenv_func}
 	};
 
 	com_struct[index].func(argvec);
@@ -51,7 +52,7 @@ char **get_builtin_commands()
 	char **pptr;
 
 	char *builtin_commands[] = {
-		"exit", "env", "cd", "setenv", NULL
+		"exit", "env", "cd", "setenv", "unsetenv", NULL
 	};
 
 	comlen = sizeof(builtin_commands);
