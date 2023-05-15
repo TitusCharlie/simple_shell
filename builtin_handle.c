@@ -34,7 +34,7 @@ int is_builtin(char *str)
 void handle_builtin(char **argvec, size_t index)
 {
 	builtin_f com_struct[] = {{"exit", NULL}, {"env", env_func},
-				  {"cd", cd_func}, {"setenv", setenv_func}
+				  {"cd", cd_func}, {"setenv", setenv_func},
 				  {"unsetenv", unsetenv_func}
 	};
 
