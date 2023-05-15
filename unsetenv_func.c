@@ -16,7 +16,7 @@ void unsetenv_func(char **argvec)
 	}
 
 	while (argvec[num] != NULL){
-		check_env_name = getenv(argvec[num]);
+		check_env_name = get_env(argvec[num]);
 
 	if (check_env_name == NULL){
 		perror("No such variable in the environment");

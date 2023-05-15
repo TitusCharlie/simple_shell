@@ -18,7 +18,7 @@ void setenv_func(char **argvec)
 	}
 
 	/*check if env_name already exist*/
-	check_env_name = getenv(argvec[0]);
+	check_env_name = get_env(argvec[0]);
 	if (check_env_name != NULL){
 		printf("%s already exist\n", argvec[0]);
 		return;
