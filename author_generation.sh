@@ -11,5 +11,5 @@ echo "SCRIPTDIR = $SCRIPTDIR"
 set -x
 
 cat > "${ROOTDIR}/AUTHORS" <<- EOF
-	$(git -C "$ROOTDIR" log --format='%aN <%aE>' | awk '!seen[$0]++')
+	$(git -C "$ROOTDIR" log --format='%aN <%aE>')
 EOF
