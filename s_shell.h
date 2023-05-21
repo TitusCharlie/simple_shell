@@ -68,7 +68,13 @@ char *_strcat(char *, char *);
 
 int _strcmp(char *, char *);
 
+char *_strdup(char *);
+
 char *get_env(char *);
+
+int _setenv(char *, char *, int);
+
+int cladd_denv(void *, int);
 
 int _strlen(char *);
 
@@ -81,6 +87,8 @@ int _putchar(char);
 int print_str(const char *);
 
 void env_func(char **);
+
+char **envcpy(char **);
 
 void setenv_func(char **);
 

@@ -64,9 +64,9 @@ char **get_builtin_commands()
 	{
 		if (builtin_commands[iter])
 		{
-			pptr[iter] = strdup(builtin_commands[iter]);
+			pptr[iter] = _strdup(builtin_commands[iter]);
 			if (!pptr[iter])
-				perror("strdup error");
+				perror("_strdup error");
 		}
 		else
 			pptr[iter] = NULL;
