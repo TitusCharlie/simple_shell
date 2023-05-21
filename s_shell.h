@@ -106,6 +106,16 @@ void cd_func(char **);
 
 void clear_bckw(char *, char);
 
+int p_exit_status(char *, char **);
+
+int _putcherr(char);
+
+void printerr_num(int);
+
+int print_strerr(const char *);
+
 void exec_err(char *, char *);
+
+void exit_err(char *, char **);
 
 #endif /* S_SHELL_H */

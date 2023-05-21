@@ -64,7 +64,10 @@ int _setenv(char *name, char *value, int overwrite)
 	if (!overwrite)
 	{
 		if (keyval)
+		{
 			return (1);
+			free(keyval);
+		}
 		return (-1);
 	}
 	else if (overwrite == 1)
@@ -92,7 +95,7 @@ int _setenv(char *name, char *value, int overwrite)
 			cladd_denv(*env, 1);
 			cladd_denv(siter, 2);
 			*env = siter;
-
+			free(keyval);
 			return (1);
 		}
 		envcopy = envcpy(envcopy);

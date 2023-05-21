@@ -62,7 +62,8 @@ void builtin_or_exec(char **argvec, char *argline, char **argv)
 		{
 			if (!argvec[1])
 				p_exit(argline, EXIT_SUCCESS);
-			p_exit(argline, _atoi(argvec[1]));
+			p_exit(argline, p_exit_status(argv[0], argvec));
+			return;
 		}
 		handle_builtin(argvec, com_index - 1);
 	}

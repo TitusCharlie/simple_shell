@@ -24,6 +24,8 @@ void free_p2p2c(char **pptr)
  */
 void p_exit(char *argline, int estat)
 {
+	if (estat == -1)
+		return;
 	cladd_denv(NULL, 3);
 	free(argline);
 	argline = NULL;
