@@ -34,7 +34,8 @@ int is_builtin(char *str)
 void handle_builtin(char **argvec, size_t index)
 {
 	builtin_f com_struct[] = {{"exit", NULL}, {"env", env_func},
-				  {"cd", cd_func}, {"setenv", setenv_func}
+				  {"cd", cd_func}, {"setenv", setenv_func},
+				  {"unsetenv", unsetenv_func}
 	};
 
 	com_struct[index].func(argvec);
@@ -51,7 +52,7 @@ char **get_builtin_commands()
 	char **pptr;
 
 	char *builtin_commands[] = {
-		"exit", "env", "cd", "setenv", NULL
+		"exit", "env", "cd", "setenv", "unsetenv", NULL
 	};
 
 	comlen = sizeof(builtin_commands);
@@ -63,9 +64,9 @@ char **get_builtin_commands()
 	{
 		if (builtin_commands[iter])
 		{
-			pptr[iter] = strdup(builtin_commands[iter]);
+			pptr[iter] = _strdup(builtin_commands[iter]);
 			if (!pptr[iter])
-				perror("strdup error");
+				perror("_strdup error");
 		}
 		else
 			pptr[iter] = NULL;

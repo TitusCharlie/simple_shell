@@ -19,6 +19,25 @@ int _atoi(char *s)
 	return (0);
 }
 
+/**
+ * p_exit_status - Processes the exit status
+ * @s: Given exit status
+ *
+ * Return: Resulting integer
+ */
+int p_exit_status(char *prog, char **argvec)
+{
+	char *piter;
+
+	for (piter = argvec[1]; *piter != '\0'; piter++)
+		if (*piter < '0' || *piter > '9')
+		{
+			exit_err(prog, argvec);
+			return (-1);
+		}
+	return (_atoi(argvec[1]));
+}
+
 
 /**
  * evalInt - Evaluate the Integer

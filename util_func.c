@@ -24,6 +24,9 @@ void free_p2p2c(char **pptr)
  */
 void p_exit(char *argline, int estat)
 {
+	if (estat == -1)
+		return;
+	cladd_denv(NULL, 3);
 	free(argline);
 	argline = NULL;
 	exit(estat);
@@ -39,7 +42,7 @@ char *get_env(char *key)
 {
 	char *pathvar, **env;
 
-	for (env = environ; env != NULL; env++)
+	for (env = environ; *env != NULL; env++)
 	{
 		pathvar = _strstr(*env, key);
 		if (pathvar)

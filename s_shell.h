@@ -68,7 +68,13 @@ char *_strcat(char *, char *);
 
 int _strcmp(char *, char *);
 
+char *_strdup(char *);
+
 char *get_env(char *);
+
+int _setenv(char *, char *, int);
+
+int cladd_denv(void *, int);
 
 int _strlen(char *);
 
@@ -82,7 +88,11 @@ int print_str(const char *);
 
 void env_func(char **);
 
+char **envcpy(char **);
+
 void setenv_func(char **);
+
+void unsetenv_func(char **);
 
 int _atoi(char *);
 
@@ -96,6 +106,16 @@ void cd_func(char **);
 
 void clear_bckw(char *, char);
 
+int p_exit_status(char *, char **);
+
+int _putcherr(char);
+
+void printerr_num(int);
+
+int print_strerr(const char *);
+
 void exec_err(char *, char *);
+
+void exit_err(char *, char **);
 
 #endif /* S_SHELL_H */
