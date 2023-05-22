@@ -1,7 +1,7 @@
 #include "s_shell.h"
 
 /**
- * setenv_func - creates new environment variable or update the the variable if present already
+ * setenv_func - creates new environment variable or updates if present already
  * @argvec: environment variable
  */
 

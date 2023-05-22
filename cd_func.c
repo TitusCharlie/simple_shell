@@ -8,7 +8,8 @@
  */
 void cd_func(char **argvec)
 {
-	char *home, *path = argvec[1], **env, res[256];
+	char *home, *path = argvec[1], **env, res[256], *oldpath, *piter;
+	int len;
 
 	for (env = environ; *env != NULL; env++)
 		if (_strstr(*env, "HOME="))
@@ -18,7 +19,8 @@ void cd_func(char **argvec)
 				home++;
 			home++;
 		}
-	if (!getcwd(res, sizeof(res) - 1))
+	oldpath = getcwd(res, sizeof(res) - 1);
+	if (!oldpath)
 		perror("getcwd error");
 	if (path)
 		switch (*path)
@@ -33,21 +35,42 @@ void cd_func(char **argvec)
 				_strcat(res, path + 1);
 			if (chdir(res) == -1)
 				perror(res);
+			_setenv("PWD", res, 1);
 			break;
 		case '/':
 			if (chdir(path) == -1)
 				perror(path);
+			_setenv("PWD", path, 1);
+			break;
+		case '-':
+			len = _strlen("OLDPWD") + 1;
+			path = get_env("OLDPWD");
+			piter = path + len;
+			if (!path)
+				piter = home;
+			if (chdir(piter) == -1)
+				perror(piter);
+			_setenv("PWD", piter, 1);
+			print_str(piter);
+			print_str("\n");
+			if (path)
+				free(path);
 			break;
 		default:
 			_strcat(res, "/");
 			_strcat(res, path);
-			if (chdir(path) == -1)
+			if (chdir(res) == -1)
 				perror(res);
+			_setenv("PWD", res, 1);
 			break;
 		}
 	else
+	{
 		if (chdir(home) == -1)
 			perror(res);
+		_setenv("PWD", home, 1);
+	}
+	_setenv("OLDPWD", oldpath, 1);
 }
 
 /**
