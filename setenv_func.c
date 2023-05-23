@@ -38,7 +38,7 @@ int _setenv(char *name, char *value, int overwrite)
 	{
 		if (keyval)
 		{
-			free(keyval);/*Here*/
+			free(keyval);
 			return (1);
 		}
 		return (-1);
@@ -88,7 +88,6 @@ char **envcpy(char **dest)
 	return (dest);
 }
 
-
 void place_env(char *key, char *keyval, char *newval)
 {
 	char *siter = newval;
@@ -99,7 +98,7 @@ void place_env(char *key, char *keyval, char *newval)
 		if (!_strcmp(keyval, siter))
 		{
 			free(siter);
-			free(keyval);/*Here*/
+			free(keyval);
 			return;
 		}
 		for (env = environ; *env != NULL; env++)

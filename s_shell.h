@@ -78,6 +78,8 @@ int _setenv(char *, char *, int);
 
 int cladd_denv(void *, int);
 
+void place_env(char *, char *, char *);
+
 int _strlen(char *);
 
 const char *_strchr(const char *, char);
