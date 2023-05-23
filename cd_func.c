@@ -50,6 +50,14 @@ void clear_bckw(char *ptr, char lim)
 	*ptr = '\0';
 }
 
+/**
+ * cd_arg - Handles the argument of cd command
+ * @path: Original path entered
+ * @res: Space for resultant of resolved path
+ * @home: Path to home directory
+ *
+ * Return: Void (Nothing)
+ */
 void cd_arg(char *path, char *res, char *home)
 {
 	char *piter;
