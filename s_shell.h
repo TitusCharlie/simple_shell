@@ -72,6 +72,8 @@ char *_strdup(char *);
 
 char *get_env(char *);
 
+char *isenv(char *, char *);
+
 int _setenv(char *, char *, int);
 
 int cladd_denv(void *, int);

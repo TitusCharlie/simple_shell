@@ -44,7 +44,7 @@ char *get_env(char *key)
 
 	for (env = environ; *env != NULL; env++)
 	{
-		pathvar = _strstr(*env, key);
+		pathvar = isenv(*env, key);
 		if (pathvar)
 		{
 			pathvar = malloc(sizeof(*pathvar)

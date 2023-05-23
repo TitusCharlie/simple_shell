@@ -70,7 +70,7 @@ char *resolve_path(char *path)
 		if (!_strcpy(execvar, _strtok(NULL, ":")))
 			break;
 		_strcat(execvar, "/");
-/*printf("%s\n", execvar);*/
+		/*printf("%s\n", execvar);*/
 		if (!access(_strcat(execvar, progname), F_OK))
 		{
 			free(freepath);

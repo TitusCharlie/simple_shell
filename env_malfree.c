@@ -63,3 +63,18 @@ int cladd_denv(void *penv, int stat)
 	}
 	return (0);
 }
+
+char *isenv(char *haystack, char *needle)
+{
+	char *hay = haystack;
+	int iter, len = _strlen(needle);
+
+	for (iter = 0; iter < len; iter++)
+	{
+		if (hay[iter] != needle[iter])
+			return (NULL);
+	}
+	if (hay[len] != '=')
+		return (NULL);
+	return (hay);
+}
