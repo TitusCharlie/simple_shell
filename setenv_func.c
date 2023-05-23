@@ -62,7 +62,12 @@ int _setenv(char *name, char *value, int overwrite)
 	return (0);
 }
 
-
+/**
+ * envcpy - Copies the environ variable using malloc
+ * @dest: Variable that holds the space for copying env
+ *
+ * Return: Pointer to copied environ
+ */
 char **envcpy(char **dest)
 {
 	int size = 0, iter;
@@ -88,6 +93,9 @@ char **envcpy(char **dest)
 	return (dest);
 }
 
+/**
+ * place_env - Implements the logic of adding to environ
+ */
 void place_env(char *key, char *keyval, char *newval)
 {
 	char *siter = newval;
