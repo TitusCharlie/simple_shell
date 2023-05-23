@@ -98,6 +98,12 @@ void cd_arg(char *path, char *res, char *home)
 	}
 }
 
+/**
+ * change_dir - Handles changing of directories
+ * @res: Directory path to change into
+ *
+ * Return: Void (Nothing)
+ */
 void change_dir(char *res)
 {
 	if (chdir(res) == -1)
