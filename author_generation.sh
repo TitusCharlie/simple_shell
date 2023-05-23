@@ -5,8 +5,6 @@ set -e
 SCRIPTDIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 ROOTDIR="$(git -C "$SCRIPTDIR" rev-parse --show-toplevel)"
 
-echo "ROOTDIR = $ROOTDIR"
-echo "SCRIPTDIR = $SCRIPTDIR"
 
 set -x
 
