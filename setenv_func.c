@@ -95,6 +95,11 @@ char **envcpy(char **dest)
 
 /**
  * place_env - Implements the logic of adding to environ
+ * @key: Key of key_value pair
+ * @keyval: key_value pair
+ * @newval: Possible replacement of keyval
+ *
+ * Return: Void (Nothing)
  */
 void place_env(char *key, char *keyval, char *newval)
 {
