@@ -7,40 +7,15 @@
 
 void setenv_func(char **argvec)
 {
-	/*
-	char *env_name;
-	int overwrite;
-	char *check_env_name;
-	*/
-/*check if argvec[0] or argvec[1] is NULL*/
-	if (argvec[1] == NULL || argvec[2] == NULL){
+
+	/*check if argvec[0] or argvec[1] is NULL*/
+	if (argvec[1] == NULL || argvec[2] == NULL)
+	{
 		print_str("Invalid argument\n");
 		return;
 	}
 
 	_setenv(argvec[1], argvec[2], 1);
-	/*check if env_name already exist*/
-/*	check_env_name = get_env(argvec[0]);
-	if (check_env_name != NULL){
-		printf("%s already exist\n", argvec[0]);
-		return;
-	}
-
-	pairing keys and values
-	overwrite = snprintf(NULL,0, "%s=%s", argvec[0], argvec[1]);
-
-	env_name = (char*)malloc(overwrite + 1);
-	snprintf(env_name, overwrite + 1, "%s=%s", argvec[0], argvec[1]);
-
-	if the env_name does not exist, add the environment variable
-	if (putenv(env_name) != 0){
-		printf("Failure: can't set %s", argvec[0]);
-		free (env_name);
-		return;
-	}
-
-	printf("%s is set to %s", argvec[0], argvec[1]);
-	*/
 }
 
 /**
@@ -68,7 +43,7 @@ int _setenv(char *name, char *value, int overwrite)
 			return (1);
 			free(keyval);
 		}
-		return (-1);
+		return (0);
 	}
 	else if (overwrite == 1)
 	{
@@ -90,7 +65,7 @@ int _setenv(char *name, char *value, int overwrite)
 				return (1);
 			}
 			for (env = environ; *env != NULL; env++)
-				if (_strstr(*env, name))
+				if (isenv(*env, name))
 					break;
 			cladd_denv(*env, 1);
 			cladd_denv(siter, 2);
