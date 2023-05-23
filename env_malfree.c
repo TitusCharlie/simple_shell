@@ -1,5 +1,5 @@
 #include "s_shell.h"
-
+/**
 void *env_malloc(int sz, void *pfree)
 {
 	void *newptr;
@@ -19,7 +19,16 @@ void *env_malloc(int sz, void *pfree)
 	free(newptr);
 	return (NULL);
 }
+*/
 
+/**
+ * cladd_denv - keeps track of memory allocated for env 
+ * @penv: pointer to add or remove from tracking array 
+ * @stat: determinant for  addition and removal
+ *
+ * Return: 1 on success, 0 on failure
+ * -1 on error
+ */
 int cladd_denv(void *penv, int stat)
 {
 	static void *env_pt[256];
@@ -63,7 +72,14 @@ int cladd_denv(void *penv, int stat)
 	}
 	return (0);
 }
-
+/**
+ * isenv - checks if the environment variable exists.
+ * @haystack: environment variable
+ * @needle: key of variable
+ *
+ * Return: ptr to environment variable if it exists
+ * NULL if environment variable does not exist
+ */
 char *isenv(char *haystack, char *needle)
 {
 	char *hay = haystack;
