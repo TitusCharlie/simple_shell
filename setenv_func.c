@@ -7,8 +7,7 @@
 
 void setenv_func(char **argvec)
 {
-
-	/*check if argvec[0] or argvec[1] is NULL*/
+/*check if argvec[0] or argvec[1] is NULL*/
 	if (argvec[1] == NULL || argvec[2] == NULL)
 	{
 		print_str("Invalid argument\n");
@@ -29,7 +28,6 @@ void setenv_func(char **argvec)
 int _setenv(char *name, char *value, int overwrite)
 {
 	char *keyval, *siter;
-	char **env, **envcopy = NULL;
 	int len;
 
 	if (!name)
@@ -40,10 +38,10 @@ int _setenv(char *name, char *value, int overwrite)
 	{
 		if (keyval)
 		{
+			free(keyval);/*Here*/
 			return (1);
-			free(keyval);
 		}
-		return (0);
+		return (-1);
 	}
 	else if (overwrite == 1)
 	{
@@ -57,30 +55,7 @@ int _setenv(char *name, char *value, int overwrite)
 		_strcpy(siter, name);
 		_strcat(siter, "=");
 		_strcat(siter, value);
-		if (keyval)
-		{
-			if (!_strcmp(keyval, siter))
-			{
-				free(siter);
-				return (1);
-			}
-			for (env = environ; *env != NULL; env++)
-				if (isenv(*env, name))
-					break;
-			cladd_denv(*env, 1);
-			cladd_denv(siter, 2);
-			*env = siter;
-			free(keyval);
-			return (1);
-		}
-		envcopy = envcpy(envcopy);
-		cladd_denv(NULL, 3);
-		cladd_denv(envcopy, 2);
-		environ = envcopy;
-		for (env = envcopy; *env != NULL; env++)
-			cladd_denv(*env, 2);
-		*env = siter;
-		cladd_denv(*env, 2);
+		place_env(name, keyval, siter);
 
 		return (1);
 	}
@@ -111,4 +86,37 @@ char **envcpy(char **dest)
 	}
 
 	return (dest);
+}
+
+
+void place_env(char *key, char *keyval, char *newval)
+{
+	char *siter = newval;
+	char **env, **envcopy = NULL;
+
+	if (keyval)
+	{
+		if (!_strcmp(keyval, siter))
+		{
+			free(siter);
+			free(keyval);/*Here*/
+			return;
+		}
+		for (env = environ; *env != NULL; env++)
+			if (isenv(*env, key))/*Here*/
+				break;
+		cladd_denv(*env, 1);
+		cladd_denv(siter, 2);
+		*env = siter;
+		free(keyval);
+		return;
+	}
+	envcopy = envcpy(envcopy);
+	cladd_denv(NULL, 3);
+	cladd_denv(envcopy, 2);
+	environ = envcopy;
+	for (env = envcopy; *env != NULL; env++)
+		cladd_denv(*env, 2);
+	*env = siter;
+	cladd_denv(*env, 2);
 }

@@ -21,7 +21,8 @@ int _atoi(char *s)
 
 /**
  * p_exit_status - Processes the exit status
- * @s: Given exit status
+ * @prog: Program name
+ * @argvec: Command vector
  *
  * Return: Resulting integer
  */

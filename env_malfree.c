@@ -1,29 +1,29 @@
 #include "s_shell.h"
-/**
-void *env_malloc(int sz, void *pfree)
-{
-	void *newptr;
-
-	if (pfree)
-	{
-		cladd_denv(pfree, 1);
-	}
-	newptr = malloc(sz);
-	if (!newptr)
-	{
-		perror("env_malloc error");
-		return (NULL);
-	}
-	if (cladd_denv(newptr, 2) > 0)
-		return (newptr);
-	free(newptr);
-	return (NULL);
-}
+/*
+ * void *env_malloc(int sz, void *pfree)
+ * {
+ *	void *newptr;
+ *
+ *	if (pfree)
+ *	{
+ *		cladd_denv(pfree, 1);
+ *	}
+ *	newptr = malloc(sz);
+ *	if (!newptr)
+ *	{
+ *		perror("env_malloc error");
+ *		return (NULL);
+ *	}
+ *	if (cladd_denv(newptr, 2) > 0)
+ *		return (newptr);
+ *	free(newptr);
+ *	return (NULL);
+ * }
 */
 
 /**
- * cladd_denv - keeps track of memory allocated for env 
- * @penv: pointer to add or remove from tracking array 
+ * cladd_denv - keeps track of memory allocated for env
+ * @penv: pointer to add or remove from tracking array
  * @stat: determinant for  addition and removal
  *
  * Return: 1 on success, 0 on failure
