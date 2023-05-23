@@ -91,7 +91,7 @@ void printerr_num(int n)
 	}
 	else if (n == 0)
 	{
-		_putcherr ('0');
+		_putcherr('0');
 		return;
 	}
 

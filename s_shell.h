@@ -96,6 +96,8 @@ char **envcpy(char **);
 
 void setenv_func(char **);
 
+void place_env(char *, char *, char *);
+
 void unsetenv_func(char **);
 
 int _atoi(char *);
@@ -107,6 +109,10 @@ void print_num(int);
 int _pow(int, int);
 
 void cd_func(char **);
+
+void cd_arg(char *, char *, char *);
+
+void change_dir(char *);
 
 void clear_bckw(char *, char);
 

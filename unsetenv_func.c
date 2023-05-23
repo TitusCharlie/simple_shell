@@ -3,14 +3,16 @@
 /**
  * unsetenv_func - unsets the environmentvariable if it exist
  * @argvec: environment variable
+ *
+ * Return: Void (Nothing)
  */
-
 void unsetenv_func(char **argvec)
 {
 	int num = 0;
 	char *check_env, **env, *name;
 
-	if (argvec[1] == NULL){
+	if (argvec[1] == NULL)
+	{
 		print_str("unsetenv: variable required\n");
 		return;
 	}
@@ -39,23 +41,4 @@ void unsetenv_func(char **argvec)
 	}
 	*(env - 1) = NULL;
 	free(check_env);
-	/*
-	while (argvec[num] != NULL){
-		check_env_name = get_env(argvec[num]);
-
-	if (check_env_name == NULL){
-		perror("No such variable in the environment");
-		return;
-		}
-		num++;
-	}
-
-	while (argvec[num] !=NULL){
-		if (unsetenv_func(argvec[num] != 0)){
-			perror("Failure: cannot unset variable");
-			return;
-		}
-		num++;
-	}
-	*/
 }

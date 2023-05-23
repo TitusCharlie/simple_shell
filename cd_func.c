@@ -8,62 +8,20 @@
  */
 void cd_func(char **argvec)
 {
-	char *home, *path = argvec[1], **env, res[256], *oldpath, *piter;
-	int len;
+	char *home, **env, res[256], oldpath[256];/*Here*/
 
 	for (env = environ; *env != NULL; env++)
-		if (_strstr(*env, "HOME="))
+		if (isenv(*env, "HOME"))/*Here*/
 		{
 			home = *env;
 			while (*home != '=')
 				home++;
 			home++;
 		}
-	oldpath = getcwd(res, sizeof(res) - 1);
-	if (!oldpath)
-		perror("getcwd error");
-	if (path)
-		switch (*path)
-		{
-		case '.':
-			if (*(path + 1) == '.')
-			{
-				clear_bckw(res, '/');
-				_strcat(res, path + 2);
-			}
-			else
-				_strcat(res, path + 1);
-			if (chdir(res) == -1)
-				perror(res);
-			_setenv("PWD", res, 1);
-			break;
-		case '/':
-			if (chdir(path) == -1)
-				perror(path);
-			_setenv("PWD", path, 1);
-			break;
-		case '-':
-			len = _strlen("OLDPWD") + 1;
-			path = get_env("OLDPWD");
-			piter = path + len;
-			if (!path)
-				piter = home;
-			if (chdir(piter) == -1)
-				perror(piter);
-			_setenv("PWD", piter, 1);
-			print_str(piter);
-			print_str("\n");
-			if (path)
-				free(path);
-			break;
-		default:
-			_strcat(res, "/");
-			_strcat(res, path);
-			if (chdir(res) == -1)
-				perror(res);
-			_setenv("PWD", res, 1);
-			break;
-		}
+	getcwd(res, sizeof(res) - 1);/*Here*/
+	getcwd(oldpath, sizeof(oldpath) - 1);/*Here*/
+	if (argvec[1])
+		cd_arg(argvec[1], res, home);
 	else
 	{
 		if (chdir(home) == -1)
@@ -90,4 +48,51 @@ void clear_bckw(char *ptr, char lim)
 		ptr--;
 	}
 	*ptr = '\0';
+}
+
+void cd_arg(char *path, char *res, char *home)
+{
+	char *piter;
+	int len;
+
+	switch (*path)
+	{
+	case '.':
+		if (*(path + 1) == '.')
+		{
+			clear_bckw(res, '/');
+			_strcat(res, path + 2);
+		}
+		else
+			_strcat(res, path + 1);
+		change_dir(res);
+		break;
+	case '/':
+		change_dir(path);
+		break;
+	case '-':
+		len = _strlen("OLDPWD") + 1;
+		path = get_env("OLDPWD");
+		piter = path + len;
+		if (!path)
+			piter = home;
+		change_dir(piter);
+		print_str(piter);
+		print_str("\n");
+		if (path)
+			free(path);
+		break;
+	default:
+		_strcat(res, "/");
+		_strcat(res, path);
+		change_dir(res);
+		break;
+	}
+}
+
+void change_dir(char *res)
+{
+	if (chdir(res) == -1)
+		perror(res);
+	_setenv("PWD", res, 1);
 }
