@@ -16,8 +16,8 @@ void handle_exec(char **argvec, char **pargv)
 	res_path = resolve_path(argvec[0]);
 	if (!res_path)
 	{
-		/*perror(pargv[0]);*/
-		exec_err(pargv[0], argvec[0]);
+		perror(pargv[0]);
+		/*exec_err(pargv[0], argvec[0]);*/
 		return;
 	}
 
