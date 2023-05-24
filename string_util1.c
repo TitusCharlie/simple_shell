@@ -97,17 +97,13 @@ char *_strtok(char *str, const char *delim)
 			continue;
 		}
 		if (mid_tok)
-		{
 			next_tok++;
-		}
 		else
-		{
 			break;
-		}
 	}
-        if (*str_stat)
-                return (str_stat);
-        return (NULL);
+	if (*str_stat)
+		return (str_stat);
+	return (NULL);
 }
 
 /**

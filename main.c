@@ -25,15 +25,8 @@ int main(__attribute__((unused)) int argc, char *argv[])
 		argvec[0] = _strtok(argline, delim);
 		for (vec_iter = 1; argvec[vec_iter - 1] != NULL; vec_iter++)
 			argvec[vec_iter] = _strtok(NULL, delim);
-		if (argvec[0] == NULL)
-		{
-			free(argline);
-			argline = NULL;
-			arglen = 0;
-			continue;
-		}
-
-		builtin_or_exec(argvec, argline, argv);
+		if (argvec[0])
+			builtin_or_exec(argvec, argline, argv);
 
 		free(argline);
 		argline = NULL;
