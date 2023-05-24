@@ -13,7 +13,7 @@ void unsetenv_func(char **argvec)
 
 	if (argvec[1] == NULL)
 	{
-		print_str("unsetenv: variable required\n");
+		print_strerr("unsetenv: variable required\n");
 		return;
 	}
 

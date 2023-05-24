@@ -10,7 +10,7 @@ void setenv_func(char **argvec)
 /*check if argvec[0] or argvec[1] is NULL*/
 	if (argvec[1] == NULL || argvec[2] == NULL)
 	{
-		print_str("Invalid argument\n");
+		print_strerr("Invalid argument\n");
 		return;
 	}
 
@@ -76,6 +76,8 @@ char **envcpy(char **dest)
 	for (ppiter = environ; *ppiter != NULL; ppiter++)
 		size++;
 	dest = malloc(sizeof(*dest) * (size + 2));
+	if (!dest)
+		perror("malloc error");
 
 	ppiter = environ;
 	for (iter = 0; iter < (size + 2); iter++)
