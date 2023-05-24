@@ -105,8 +105,9 @@ char *_strtok(char *str, const char *delim)
 			break;
 		}
 	}
-
-	return (str_stat);
+        if (*str_stat)
+                return (str_stat);
+        return (NULL);
 }
 
 /**
