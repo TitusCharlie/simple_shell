@@ -55,19 +55,23 @@ char *resolve_path(char *path)
 
 	if (*progname == '/' || *progname == '.')
 	{
-		pathvar = malloc(sizeof(*pathvar) * (_strlen(progname) + 1));
-		if (!pathvar)
-			perror("path malloc error");
-		_strcpy(pathvar, progname);
-
-		return (pathvar);
+		if (!access(progname, F_OK))
+		{
+			pathvar = malloc(sizeof(*pathvar) *
+					 (_strlen(progname) + 1));
+			if (!pathvar)
+				perror("path malloc error");
+			_strcpy(pathvar, progname);
+			return (pathvar);
+		}
+		return (NULL);
 	}
 	pathvar = get_env("PATH");
 	freepath = pathvar;
 	_strtok(pathvar, "=:");
 
 	do {
-		if (!_strcpy(execvar, _strtok(NULL, ":")))
+		if (!_strcpy(execvar, _strtok(NULL, "=:")))
 			break;
 		_strcat(execvar, "/");
 		/*printf("%s\n", execvar);*/
