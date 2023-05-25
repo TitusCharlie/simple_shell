@@ -34,6 +34,8 @@ typedef struct builtin_func builtin_f;
 
 ssize_t _getline(char **, size_t *, int);
 
+int beg_wh(char, size_t *, int);
+
 void prompt(char *);
 
 int com_number(int);

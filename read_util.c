@@ -14,7 +14,7 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 	static char buff[1024];
 	static size_t index, len;
 	static ssize_t slen;
-	size_t line_len;
+	size_t line_len, isfirst = 0;
 	char *iter;
 
 	if (len == index)
@@ -27,10 +27,10 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 		index = 0;
 	}
 	for (iter = buff + index; (*iter != '\n') && (*iter != '\0'); iter++)
-	{}
+		if (!beg_wh(*iter, &index, isfirst))
+			isfirst = 1;
 	if (*iter == '\n')
 		iter++;
-
 	line_len = iter - (buff + index);
 	if (!(*lineptr))
 	{
@@ -49,8 +49,26 @@ ssize_t _getline(char **lineptr, size_t *n, int fd)
 	_strncpy(*lineptr, buff + index, line_len);
 	*(*lineptr + line_len) = '\0';
 	index += line_len;
-
 	return (line_len);
+}
+
+/**
+ * beg_wh - Removes beginning whitespaces
+ * @c: Character under consideration
+ * @in: index to modify
+ * @isfirst: if the character is at the beginning
+ *
+ * Return: 1 if character is a beginning whitespace
+ * 0 if otherwise
+ */
+int beg_wh(char c, size_t *in, int isfirst)
+{
+	if ((c == '\t' || c == ' ') && (!isfirst))
+	{
+		*in += 1;
+		return (1);
+	}
+	return (0);
 }
 
 /**

@@ -21,9 +21,9 @@ void unsetenv_func(char **argvec)
 	check_env = get_env(name);
 	if (!check_env)
 	{
-		print_str("unsetenv: ");
-		print_str(name);
-		print_str(" not found");
+		print_strerr("unsetenv: ");
+		print_strerr(name);
+		print_strerr(" not found\n");
 		return;
 	}
 
